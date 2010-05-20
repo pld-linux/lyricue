@@ -1,11 +1,15 @@
-Summary:	The GNU Lyric Display System
+# TODO:
+# - Split packages for core, client and remote
+# - Add default access.conf file to package
+# - Add suggests for diatheke after package for sword is available
+Summary:	GNU Lyric Display System, client interface
 Name:		lyricue
 Version:	2.0.0
-Release:	1
+Release:	2
 License:	GPL
 Group:		X11/Applications/Graphics
 Source0:	http://www.adebenham.com/debian/%{name}_%{version}.tar.gz
-URL:		http://www.adebenham.com/lyricue/
+URL:		http://www.lyricue.org
 Requires:	mysql-client
 Requires:	perl-DBD-mysql
 Requires:	perl-DBI
@@ -13,14 +17,24 @@ Requires:	perl-Gnome2-Canvas
 Requires:	perl-Gtk2-GladeXML
 Requires:	perl-Gtk2-Spell
 Requires:	perl-URI
+Requires:	perl-Locale-gettext
 Suggests:	perl-Gtk2-TrayIcon
-Suggests:	perl-Locale-gettext
+Suggests:	%{name}-server
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
-This application is used to edit/display song lyrics and passages of
-text on a second screen/projector for use at live events such as
-church services, concerts and seminars.
+Lyricue is used to edit and display song lyrics and
+passages of text along with images and videos on a second
+screen/projector. It was designed for use at live events
+such as church services, concerts and seminars.
+
+%package server
+Summary:	GNU Lyric Display System, server interface 
+Group:		X11/Applications/Graphics
+Requires:	perl-Locale-gettext
+
+%description server
+Component to handle action display and projection of slides.
 
 %prep
 %setup -q
@@ -38,13 +52,12 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%dir %{_sysconfdir}/lyricue
-%config(noreplace) %{_sysconfdir}/lyricue/*
-%attr(755,root,root) %{_bindir}/lyricue
-%attr(755,root,root) %{_bindir}/lyricue_server
+%dir %{_sysconfdir}/%{name}
+%config(noreplace) %{_sysconfdir}/%{name}/*
+%attr(755,root,root) %{_bindir}/%{name}
 %attr(755,root,root) %{_bindir}/lyricue_remote
 %attr(755,root,root) %{_bindir}/import_media
-%dir %{_datadir}/lyricue
+%dir %{_datadir}/%{name}
 %lang(en_US) %dir %{_datadir}/locale/en_US
 %lang(en_US) %dir %{_datadir}/locale/en_US/LC_MESSAGES
 %lang(en_US) %{_datadir}/locale/en_US/LC_MESSAGES/lyricue.mo
@@ -63,7 +76,11 @@ rm -rf $RPM_BUILD_ROOT
 %lang(sv) %dir %{_datadir}/locale/sv
 %lang(sv) %dir %{_datadir}/locale/sv/LC_MESSAGES
 %lang(sv) %{_datadir}/locale/sv/LC_MESSAGES/lyricue.mo
-%{_datadir}/lyricue/*
-%doc %{_docdir}/lyricue/*
-%dir %{_docdir}/lyricue
-%{_desktopdir}/%{name}*.desktop
+%{_datadir}/%{name}/*
+%{_desktopdir}/%{name}.desktop
+%dir %{_docdir}/%{name}
+%doc %{_docdir}/%{name}/*
+
+%files server
+%attr(755,root,root) %{_bindir}/%{name}_server
+%{_desktopdir}/%{name}_server.desktop
