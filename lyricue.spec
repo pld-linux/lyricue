@@ -3,28 +3,15 @@
 Summary:	GNU Lyric Display System, client interface
 Name:		lyricue
 Version:	2.0.0
-Release:	7
+Release:	8
 License:	GPL
 Group:		X11/Applications/Graphics
 Source0:	http://www.adebenham.com/debian/%{name}_%{version}.tar.gz
 # Source0-md5:	cd0fb1c9b0e6ccadc52cda2601b86be6
 URL:		http://www.lyricue.org
+Patch0:		%{name}-shebang.patch
 BuildRequires:	rpm-perlprov
 Requires:	mysql-client
-Requires:	perl(DBI)
-Requires:	perl(Encode)
-Requires:	perl(File::Temp)
-Requires:	perl(Gtk2::Gdk::Keysyms)
-Requires:	perl(Gtk2::GladeXML)
-Requires:	perl(Gtk2::Pango)
-Requires:	perl(IO::Socket::INET)
-Requires:	perl(POSIX)
-Requires:	perl(URI::file)
-Requires:	perl(XML::Simple)
-Requires:	perl(constant)
-Requires:	perl(locale)
-Requires:	perl(strict)
-Requires:	perl(warnings)
 Suggests:	%{name}-server
 Suggests:	diatheke
 Suggests:	mysql
@@ -42,19 +29,7 @@ seminars.
 %package server
 Summary:	GNU Lyric Display System, server interface
 Group:		X11/Applications/Graphics
-Requires:	perl(DBI)
-Requires:	perl(Encode)
-Requires:	perl(GStreamer)
-Requires:	perl(Glib)
-Requires:	perl(Gtk2::Gdk::Keysyms)
-Requires:	perl(Gtk2::GladeXML)
-Requires:	perl(Gtk2::Pango)
-Requires:	perl(IO::Select)
-Requires:	perl(IO::Socket::INET)
-Requires:	perl(POSIX)
-Requires:	perl(constant)
-Requires:	perl(lib)
-Requires:	perl(strict)
+BuildRequires:	rpm-perlprov
 Suggests:	perl(DBD::mysql)
 Suggests:	perl(Locale::gettext)
 
@@ -63,6 +38,7 @@ Component to handle action display and projection of slides.
 
 %prep
 %setup -q
+%patch0 -p0
 
 %build
 %{__make}
