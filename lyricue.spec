@@ -6,14 +6,16 @@
 Summary:	GNU Lyric Display System, client interface
 Name:		lyricue
 Version:	2.0.0
-Release:	10
+Release:	0.10
 License:	GPL
 Group:		X11/Applications/Graphics
 Source0:	http://www.adebenham.com/debian/%{name}_%{version}.tar.gz
 # Source0-md5:	cd0fb1c9b0e6ccadc52cda2601b86be6
-URL:		http://www.lyricue.org
 Patch0:		%{name}-perlshebang.patch
+URL:		http://www.lyricue.org
+BuildRequires:	gettext-devel
 BuildRequires:	rpm-perlprov
+BuildRequires:	sed >= 4.0
 Requires:	mysql-client
 Suggests:	%{name}-server
 Suggests:	diatheke
@@ -21,6 +23,7 @@ Suggests:	mysql
 Suggests:	perl(DBD::mysql)
 Suggests:	perl(Gtk2::TrayIcon)
 Suggests:	unoconv
+BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -32,7 +35,6 @@ seminars.
 %package server
 Summary:	GNU Lyric Display System, server interface
 Group:		X11/Applications/Graphics
-BuildRequires:	rpm-perlprov
 Suggests:	perl(DBD::mysql)
 Suggests:	perl(Locale::gettext)
 
@@ -42,6 +44,9 @@ Component to handle action display and projection of slides.
 %prep
 %setup -q
 %patch0 -p0
+
+sed -e 's#po/es_ES#po/es#' -i Makefile
+mv po/es{_ES,}.po
 
 %build
 %{__make}
@@ -60,8 +65,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files -f %{name}.lang
 %defattr(644,root,root,755)
-%dir %{_docdir}/%{name}
-%doc %{_docdir}/%{name}/*
+%doc docs/*
 %dir %{_sysconfdir}/%{name}
 %config(noreplace) %{_sysconfdir}/%{name}/*.conf
 %attr(755,root,root) %{_bindir}/%{name}
