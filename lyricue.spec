@@ -1,12 +1,11 @@
 # TODO:
 # - Split packages for core, client and remote
-# - Add default access.conf file to package
 # - use %find_lang macro for *.mo
 # - ues perlprovs for perl deps
 Summary:	GNU Lyric Display System, client interface
 Name:		lyricue
 Version:	2.0.0
-Release:	4
+Release:	5
 License:	GPL
 Group:		X11/Applications/Graphics
 Source0:	http://www.adebenham.com/debian/%{name}_%{version}.tar.gz
@@ -54,16 +53,17 @@ rm -rf $RPM_BUILD_ROOT
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
 
+mv $RPM_BUILD_ROOT/%{_sysconfdir}/%{name}/access.conf{.example,}
+
 %clean
 rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%docdir %{_docdir}/%{name}
+%dir %{_docdir}/%{name}
 %doc %{_docdir}/%{name}/*
 %dir %{_sysconfdir}/%{name}
-# XXX this glob is evil, use *.conf or sth, may match something irrelevant, like *~ or *.orig
-%config(noreplace) %{_sysconfdir}/%{name}/*
+%config(noreplace) %{_sysconfdir}/%{name}/*.conf
 %attr(755,root,root) %{_bindir}/%{name}
 %attr(755,root,root) %{_bindir}/%{name}_remote
 %attr(755,root,root) %{_bindir}/import_media
