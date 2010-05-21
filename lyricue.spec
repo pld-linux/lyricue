@@ -1,9 +1,12 @@
 # TODO:
 # - Split packages for core, client and remote
+
+%include    /usr/lib/rpm/macros.perl
+
 Summary:	GNU Lyric Display System, client interface
 Name:		lyricue
 Version:	2.0.0
-Release:	9
+Release:	10
 License:	GPL
 Group:		X11/Applications/Graphics
 Source0:	http://www.adebenham.com/debian/%{name}_%{version}.tar.gz
