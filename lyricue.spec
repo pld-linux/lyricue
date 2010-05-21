@@ -1,6 +1,8 @@
 # TODO:
 # - Split packages for core, client and remote
 # - Add default access.conf file to package
+# - use %find_lang macro for *.mo
+# - ues perlprovs for perl deps
 Summary:	GNU Lyric Display System, client interface
 Name:		lyricue
 Version:	2.0.0
@@ -49,7 +51,7 @@ Component to handle action display and projection of slides.
 
 %install
 rm -rf $RPM_BUILD_ROOT
-%{make} install \
+%{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
 
 %clean
@@ -57,12 +59,16 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
+%docdir %{_docdir}/%{name}
+%doc %{_docdir}/%{name}/*
 %dir %{_sysconfdir}/%{name}
+# XXX this glob is evil, use *.conf or sth, may match something irrelevant, like *~ or *.orig
 %config(noreplace) %{_sysconfdir}/%{name}/*
 %attr(755,root,root) %{_bindir}/%{name}
-%attr(755,root,root) %{_bindir}/lyricue_remote
+%attr(755,root,root) %{_bindir}/%{name}_remote
 %attr(755,root,root) %{_bindir}/import_media
 %dir %{_datadir}/%{name}
+# XXX %find_lang
 %lang(en_US) %dir %{_datadir}/locale/en_US
 %lang(en_US) %dir %{_datadir}/locale/en_US/LC_MESSAGES
 %lang(en_US) %{_datadir}/locale/en_US/LC_MESSAGES/lyricue.mo
@@ -83,8 +89,6 @@ rm -rf $RPM_BUILD_ROOT
 %lang(sv) %{_datadir}/locale/sv/LC_MESSAGES/lyricue.mo
 %{_datadir}/%{name}/*
 %{_desktopdir}/%{name}.desktop
-%dir %{_docdir}/%{name}
-%doc %{_docdir}/%{name}/*
 
 %files server
 %defattr(644,root,root,755)
