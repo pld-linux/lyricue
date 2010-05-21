@@ -4,13 +4,12 @@
 Summary:	GNU Lyric Display System, client interface
 Name:		lyricue
 Version:	2.0.0
-Release:	3
+Release:	4
 License:	GPL
 Group:		X11/Applications/Graphics
 Source0:	http://www.adebenham.com/debian/%{name}_%{version}.tar.gz
 # Source0-md5:	cd0fb1c9b0e6ccadc52cda2601b86be6
 URL:		http://www.lyricue.org
-Requires:	diatheke
 Requires:	mysql-client
 Requires:	perl-DBD-mysql
 Requires:	perl-DBI
@@ -20,8 +19,11 @@ Requires:	perl-Gtk2-GladeXML
 Requires:	perl-Gtk2-Spell
 Requires:	perl-Locale-gettext
 Requires:	perl-URI
-Suggests:	perl-Gtk2-TrayIcon
 Suggests:	%{name}-server
+Suggests:	diatheke
+Suggests:	mysql-server
+Suggests:	perl-Gtk2-TrayIcon
+Suggests:	unoconv
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
