@@ -1,12 +1,12 @@
 # TODO:
-# - Split packages for core, client and remote
+# - Make sure server subpackage can run without the client
 
 %include    /usr/lib/rpm/macros.perl
 
 Summary:	GNU Lyric Display System, client interface
 Name:		lyricue
 Version:	2.0.0
-Release:	0.10
+Release:	0.11
 License:	GPL
 Group:		X11/Applications/Graphics
 Source0:	http://www.adebenham.com/debian/%{name}_%{version}.tar.gz
@@ -18,8 +18,10 @@ BuildRequires:	rpm-perlprov
 BuildRequires:	sed >= 4.0
 Requires:	mysql-client
 Suggests:	%{name}-server
+Suggests:	%{name}-remote
 Suggests:	diatheke
 Suggests:	mysql
+Suggests:	perl(Clutter)
 Suggests:	perl(DBD::mysql)
 Suggests:	perl(Gtk2::TrayIcon)
 Suggests:	unoconv
@@ -35,11 +37,19 @@ seminars.
 %package server
 Summary:	GNU Lyric Display System, server interface
 Group:		X11/Applications/Graphics
+Suggests:	perl(Clutter)
 Suggests:	perl(DBD::mysql)
 Suggests:	perl(Locale::gettext)
 
 %description server
 Component to handle action display and projection of slides.
+
+%package remote
+Summary:	GNU Lyric Display System, remote control cli
+Group:	Libraries
+
+%description remote
+Remote control CLI to control the projection server from any shell.
 
 %prep
 %setup -q
@@ -69,7 +79,6 @@ rm -rf $RPM_BUILD_ROOT
 %dir %{_sysconfdir}/%{name}
 %config(noreplace) %{_sysconfdir}/%{name}/*.conf
 %attr(755,root,root) %{_bindir}/%{name}
-%attr(755,root,root) %{_bindir}/%{name}_remote
 %attr(755,root,root) %{_bindir}/import_media
 %dir %{_datadir}/%{name}
 %{_datadir}/%{name}/*
@@ -79,3 +88,7 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/%{name}_server
 %{_desktopdir}/%{name}_server.desktop
+
+%files remote
+%defattr(644,root,root,755)
+%attr(755,root,root) %{_bindir}/%{name}_remote
