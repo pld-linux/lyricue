@@ -1,23 +1,24 @@
 # TODO:
 # - Split packages for core, client and remote
 # - Add default access.conf file to package
-# - Add suggests for diatheke after package for sword is available
 Summary:	GNU Lyric Display System, client interface
 Name:		lyricue
 Version:	2.0.0
-Release:	2
+Release:	3
 License:	GPL
 Group:		X11/Applications/Graphics
 Source0:	http://www.adebenham.com/debian/%{name}_%{version}.tar.gz
 URL:		http://www.lyricue.org
+Requires:	diatheke
 Requires:	mysql-client
 Requires:	perl-DBD-mysql
 Requires:	perl-DBI
 Requires:	perl-Gnome2-Canvas
+Requires:	perl-GStreamer
 Requires:	perl-Gtk2-GladeXML
 Requires:	perl-Gtk2-Spell
-Requires:	perl-URI
 Requires:	perl-Locale-gettext
+Requires:	perl-URI
 Suggests:	perl-Gtk2-TrayIcon
 Suggests:	%{name}-server
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -31,6 +32,7 @@ such as church services, concerts and seminars.
 %package server
 Summary:	GNU Lyric Display System, server interface 
 Group:		X11/Applications/Graphics
+Requires:	perl-GStreamer
 Requires:	perl-Locale-gettext
 
 %description server
