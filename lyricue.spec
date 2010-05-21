@@ -3,13 +3,13 @@
 Summary:	GNU Lyric Display System, client interface
 Name:		lyricue
 Version:	2.0.0
-Release:	8
+Release:	9
 License:	GPL
 Group:		X11/Applications/Graphics
 Source0:	http://www.adebenham.com/debian/%{name}_%{version}.tar.gz
 # Source0-md5:	cd0fb1c9b0e6ccadc52cda2601b86be6
 URL:		http://www.lyricue.org
-Patch0:		%{name}-shebang.patch
+Patch0:		%{name}-perlshebang.patch
 BuildRequires:	rpm-perlprov
 Requires:	mysql-client
 Suggests:	%{name}-server
