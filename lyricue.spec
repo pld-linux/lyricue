@@ -8,6 +8,7 @@ Release:	3
 License:	GPL
 Group:		X11/Applications/Graphics
 Source0:	http://www.adebenham.com/debian/%{name}_%{version}.tar.gz
+# Source0-md5:	cd0fb1c9b0e6ccadc52cda2601b86be6
 URL:		http://www.lyricue.org
 Requires:	diatheke
 Requires:	mysql-client
