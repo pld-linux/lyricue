@@ -13,27 +13,27 @@ URL:		http://www.lyricue.org
 Requires:	mysql-client
 Requires:	perl-DBD-mysql
 Requires:	perl-DBI
-Requires:	perl-Gnome2-Canvas
 Requires:	perl-GStreamer
+Requires:	perl-Gnome2-Canvas
 Requires:	perl-Gtk2-GladeXML
 Requires:	perl-Gtk2-Spell
 Requires:	perl-Locale-gettext
 Requires:	perl-URI
 Suggests:	%{name}-server
 Suggests:	diatheke
-Suggests:	mysql-server
+Suggests:	mysql
 Suggests:	perl-Gtk2-TrayIcon
 Suggests:	unoconv
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
-Lyricue is used to edit and display song lyrics and
-passages of text along with images and videos on a second
-screen/projector. It was designed for use at live events
-such as church services, concerts and seminars.
+Lyricue is used to edit and display song lyrics and passages of text
+along with images and videos on a second screen/projector. It was
+designed for use at live events such as church services, concerts and
+seminars.
 
 %package server
-Summary:	GNU Lyric Display System, server interface 
+Summary:	GNU Lyric Display System, server interface
 Group:		X11/Applications/Graphics
 Requires:	perl-GStreamer
 Requires:	perl-Locale-gettext
@@ -87,5 +87,6 @@ rm -rf $RPM_BUILD_ROOT
 %doc %{_docdir}/%{name}/*
 
 %files server
+%defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/%{name}_server
 %{_desktopdir}/%{name}_server.desktop
