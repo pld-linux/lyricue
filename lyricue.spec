@@ -2,7 +2,6 @@
 # - Make sure server subpackage can run without the client
 
 %include    /usr/lib/rpm/macros.perl
-
 Summary:	GNU Lyric Display System, client interface
 Name:		lyricue
 Version:	2.0.0
@@ -17,13 +16,13 @@ BuildRequires:	gettext-devel
 BuildRequires:	rpm-perlprov
 BuildRequires:	sed >= 4.0
 Requires:	mysql-client
-Suggests:	%{name}-server
 Suggests:	%{name}-remote
+Suggests:	%{name}-server
 Suggests:	diatheke
 Suggests:	mysql
-Suggests:	perl(Clutter)
-Suggests:	perl(DBD::mysql)
-Suggests:	perl(Gtk2::TrayIcon)
+Suggests:	perl-Clutter
+Suggests:	perl-DBD-mysql
+Suggests:	perl-Gtk2-TrayIcon
 Suggests:	unoconv
 BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -37,16 +36,16 @@ seminars.
 %package server
 Summary:	GNU Lyric Display System, server interface
 Group:		X11/Applications/Graphics
-Suggests:	perl(Clutter)
-Suggests:	perl(DBD::mysql)
-Suggests:	perl(Locale::gettext)
+Suggests:	perl-Clutter
+Suggests:	perl-DBD-mysql
+Suggests:	perl-Locale-gettext
 
 %description server
 Component to handle action display and projection of slides.
 
 %package remote
 Summary:	GNU Lyric Display System, remote control cli
-Group:	Libraries
+Group:		Libraries
 
 %description remote
 Remote control CLI to control the projection server from any shell.
