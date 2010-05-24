@@ -1,16 +1,18 @@
 # TODO:
 # - Make sure server subpackage can run without the client
+# - Package missing dependencies (perl-Gtk2-Clutter and perl-Clutter-GStreamer)
+# - Add bconds for with[out] mysql and sqlite backend options
 
 %include    /usr/lib/rpm/macros.perl
+
 Summary:	GNU Lyric Display System, client interface
 Name:		lyricue
-Version:	2.0.0
-Release:	0.12
+Version:	2.2.1
+Release:	0.1
 License:	GPL
 Group:		X11/Applications/Graphics
-Source0:	http://www.adebenham.com/debian/%{name}_%{version}.tar.gz
-# Source0-md5:	cd0fb1c9b0e6ccadc52cda2601b86be6
-Patch0:		%{name}-perlshebang.patch
+Source0:	http://www.lyricue.org/archive/%{name}_%{version}.tar.gz
+# Source0-md5:	6c61420f067e76429908e1b1b2ed0446
 URL:		http://www.lyricue.org
 BuildRequires:	gettext-devel
 BuildRequires:	rpm-perlprov
@@ -21,8 +23,10 @@ Suggests:	%{name}-server
 Suggests:	diatheke
 Suggests:	mysql
 Suggests:	perl-Clutter
+Suggests:	perl-Clutter-GStreamer
 Suggests:	perl-DBD-mysql
-Suggests:	perl-Gnome2-Canvas
+Suggests:	perl-DBD-mysql
+Suggests:	perl-DBD-SQLite
 Suggests:	perl-Gtk2-Spell
 Suggests:	perl-Gtk2-TrayIcon
 Suggests:	unoconv
@@ -39,7 +43,9 @@ seminars.
 Summary:	GNU Lyric Display System, server interface
 Group:		X11/Applications/Graphics
 Suggests:	perl-Clutter
+Suggests:	perl-Clutter-GStreamer
 Suggests:	perl-DBD-mysql
+Suggests:	perl-DBD-SQLite
 Suggests:	perl-Locale-gettext
 
 %description server
@@ -54,10 +60,14 @@ Remote control CLI to control the projection server from any shell.
 
 %prep
 %setup -q
-%patch0 -p0
 
-sed -e 's#po/es_ES#po/es#' -i Makefile
-mv po/es{_ES,}.po
+# Fix perl shebang
+%{__sed} -i -e '1s,^#!.*perl,#!%{__perl},' %{name} %{name}_server %{name}_remote
+
+# Fix Spanish language code
+%{__sed} -e 's#po/es_ES#po/es#' -i Makefile
+
+mv debian/po/es{_ES,}.po
 
 %build
 %{__make}
@@ -68,6 +78,7 @@ rm -rf $RPM_BUILD_ROOT
 	DESTDIR=$RPM_BUILD_ROOT
 
 mv $RPM_BUILD_ROOT/%{_sysconfdir}/%{name}/access.conf{.example,}
+rm -r $RPM_BUILD_ROOT%{_datadir}/doc
 
 %find_lang %{name}
 
