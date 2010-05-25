@@ -1,6 +1,4 @@
 # TODO:
-# - Make sure server subpackage can run without the client
-# - Package missing dependencies (perl-Gtk2-Clutter and perl-Clutter-GStreamer)
 # - Add bconds for with[out] mysql and sqlite backend options
 
 %include    /usr/lib/rpm/macros.perl
@@ -8,7 +6,7 @@
 Summary:	GNU Lyric Display System, client interface
 Name:		lyricue
 Version:	2.2.1
-Release:	0.1
+Release:	0.2
 License:	GPL
 Group:		X11/Applications/Graphics
 Source0:	http://www.lyricue.org/archive/%{name}_%{version}.tar.gz
@@ -17,9 +15,10 @@ URL:		http://www.lyricue.org
 BuildRequires:	gettext-devel
 BuildRequires:	rpm-perlprov
 BuildRequires:	sed >= 4.0
+Requires:	%{name}-remote
+Requires:	%{name}-server
 Requires:	mysql-client
-Suggests:	%{name}-remote
-Suggests:	%{name}-server
+Requires:	perl-Gtk2 >= 1.220
 Suggests:	diatheke
 Suggests:	mysql
 Suggests:	perl-Clutter
@@ -27,8 +26,10 @@ Suggests:	perl-Clutter-GStreamer
 Suggests:	perl-DBD-mysql
 Suggests:	perl-DBD-mysql
 Suggests:	perl-DBD-SQLite
-Suggests:	perl-Gtk2-Spell
+Suggests:	perl-Gtk2-Clutter
+Suggests:	perl-Gtk2-spell
 Suggests:	perl-Gtk2-TrayIcon
+Suggests:	totem
 Suggests:	unoconv
 BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -42,11 +43,14 @@ seminars.
 %package server
 Summary:	GNU Lyric Display System, server interface
 Group:		X11/Applications/Graphics
+Requires:	perl-Gtk2 >= 1.220
 Suggests:	perl-Clutter
 Suggests:	perl-Clutter-GStreamer
 Suggests:	perl-DBD-mysql
 Suggests:	perl-DBD-SQLite
+Suggests:	perl-Gtk2-Clutter
 Suggests:	perl-Locale-gettext
+Suggests:	totem
 
 %description server
 Component to handle action display and projection of slides.
@@ -66,8 +70,10 @@ Remote control CLI to control the projection server from any shell.
 
 # Fix Spanish language code
 %{__sed} -e 's#po/es_ES#po/es#' -i Makefile
-
 mv debian/po/es{_ES,}.po
+
+# Fix issue with use of deprecated method in Gtk2, fixed in cvs upstream
+%{__sed} -i -e 's!Gtk2::Gdk::Color->from_string!Gtk2::Gdk::Color->parse!' %{name}_server
 
 %build
 %{__make}
