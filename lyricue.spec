@@ -6,11 +6,12 @@
 Summary:	GNU Lyric Display System, client interface
 Name:		lyricue
 Version:	2.2.1
-Release:	0.3
+Release:	0.4
 License:	GPL
 Group:		X11/Applications/Graphics
 Source0:	http://www.lyricue.org/archive/%{name}_%{version}.tar.gz
 # Source0-md5:	6c61420f067e76429908e1b1b2ed0446
+Patch0:		%{name}-mysql.patch
 URL:		http://www.lyricue.org
 BuildRequires:	gettext-devel
 BuildRequires:	rpm-perlprov
@@ -64,6 +65,7 @@ Remote control CLI to control the projection server from any shell.
 
 %prep
 %setup -q
+%patch0 -p0
 
 # Fix perl shebang
 %{__sed} -i -e '1s,^#!.*perl,#!%{__perl},' %{name} %{name}_server %{name}_remote
