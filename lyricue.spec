@@ -6,7 +6,7 @@
 Summary:	GNU Lyric Display System, client interface
 Name:		lyricue
 Version:	2.2.1
-Release:	0.2
+Release:	0.3
 License:	GPL
 Group:		X11/Applications/Graphics
 Source0:	http://www.lyricue.org/archive/%{name}_%{version}.tar.gz
@@ -27,7 +27,7 @@ Suggests:	perl-DBD-mysql
 Suggests:	perl-DBD-mysql
 Suggests:	perl-DBD-SQLite
 Suggests:	perl-Gtk2-Clutter
-Suggests:	perl-Gtk2-spell
+Suggests:	perl-Gtk2-Spell
 Suggests:	perl-Gtk2-TrayIcon
 Suggests:	totem
 Suggests:	unoconv
