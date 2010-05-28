@@ -1,12 +1,10 @@
-# TODO:
-# - Add bconds for with[out] mysql and sqlite backend options
 
 %include    /usr/lib/rpm/macros.perl
 
 Summary:	GNU Lyric Display System, client interface
 Name:		lyricue
 Version:	2.2.1
-Release:	0.4
+Release:	1
 License:	GPL
 Group:		X11/Applications/Graphics
 Source0:	http://www.lyricue.org/archive/%{name}_%{version}.tar.gz
