@@ -1,6 +1,4 @@
-
 %include    /usr/lib/rpm/macros.perl
-
 Summary:	GNU Lyric Display System, client interface
 Name:		lyricue
 Version:	3.0.10
@@ -13,14 +11,14 @@ URL:		http://www.lyricue.org
 BuildRequires:	gettext-devel
 BuildRequires:	rpm-perlprov
 BuildRequires:	sed >= 4.0
-Requires:	%{name}-display
-Requires:	%{name}-remote
+Requires:	%{name}-display = %{version}-%{release}
+Requires:	%{name}-remote = %{version}-%{release}
 Requires:	mysql-client
 Requires:	perl-Gtk2 >= 1.220
 Suggests:	diatheke
 Suggests:	mysql
-Suggests:	perl-DBD-mysql
 Suggests:	perl-DBD-SQLite
+Suggests:	perl-DBD-mysql
 Suggests:	perl-Gtk2-Spell
 Suggests:	perl-Gtk2-TrayIcon
 Suggests:	totem
@@ -36,12 +34,12 @@ seminars.
 %package display
 Summary:	GNU Lyric Display System, display interface
 Group:		X11/Applications/Graphics
-Obsoletes:	%{name}-server
 Requires:	perl-Gtk2 >= 1.220
-Suggests:	perl-DBD-mysql
 Suggests:	perl-DBD-SQLite
+Suggests:	perl-DBD-mysql
 Suggests:	perl-Locale-gettext
 Suggests:	totem
+Obsoletes:	lyricue-server
 
 %description display
 Component to handle action display and projection of slides.
@@ -57,13 +55,15 @@ Remote control CLI to control the projection display from any shell.
 %setup -q
 
 # Upstream package is missing ChangeLog file referenced in the Makefile
-cp NEWS ChangeLog
+cp -a NEWS ChangeLog
 
 # Fix perl shebang
 %{__sed} -i -e '1s,^#!.*perl,#!%{__perl},' src/%{name} src/%{name}_remote
 
 %build
-%configure --prefix=%{_prefix}
+%configure \
+	--prefix=%{_prefix}
+
 %{__make}
 
 %install
