@@ -4,7 +4,7 @@
 Summary:	GNU Lyric Display System, client interface
 Name:		lyricue
 Version:	3.0.10
-Release:	0.1
+Release:	1
 License:	GPL
 Group:		X11/Applications/Graphics
 Source0:	http://www.lyricue.org/archive/%{name}_%{version}.tar.gz
@@ -13,9 +13,9 @@ URL:		http://www.lyricue.org
 BuildRequires:	gettext-devel
 BuildRequires:	rpm-perlprov
 BuildRequires:	sed >= 4.0
-Requires:	mysql-client
 Requires:	%{name}-display
 Requires:	%{name}-remote
+Requires:	mysql-client
 Requires:	perl-Gtk2 >= 1.220
 Suggests:	diatheke
 Suggests:	mysql
@@ -70,8 +70,6 @@ cp NEWS ChangeLog
 rm -rf $RPM_BUILD_ROOT
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
-
-#rm -r $RPM_BUILD_ROOT%{_datadir}/doc
 
 %find_lang %{name}
 
