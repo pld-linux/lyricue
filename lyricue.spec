@@ -1,12 +1,12 @@
 %include    /usr/lib/rpm/macros.perl
 Summary:	GNU Lyric Display System, client interface
 Name:		lyricue
-Version:	3.0.10
+Version:	3.0.12
 Release:	1
 License:	GPL
 Group:		X11/Applications/Graphics
 Source0:	http://www.lyricue.org/archive/%{name}_%{version}.tar.gz
-# Source0-md5:	8544bb12dddef9f2176926a752e6e9df
+# Source0-md5:	718de427f804e65198610f38c6ae4301
 URL:		http://www.lyricue.org
 BuildRequires:	gettext-devel
 BuildRequires:	rpm-perlprov
@@ -53,9 +53,6 @@ Remote control CLI to control the projection display from any shell.
 
 %prep
 %setup -q
-
-# Upstream package is missing ChangeLog file referenced in the Makefile
-cp -a NEWS ChangeLog
 
 # Fix perl shebang
 %{__sed} -i -e '1s,^#!.*perl,#!%{__perl},' src/%{name} src/%{name}_remote
