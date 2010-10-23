@@ -8,11 +8,13 @@ Group:		X11/Applications/Graphics
 Source0:	http://www.lyricue.org/archive/%{name}_%{version}.tar.gz
 # Source0-md5:	073129853c14d1e84468228d72860a3e
 URL:		http://www.lyricue.org
+BuildRequires:	clutter-gst-devel >= 0.10
 BuildRequires:	gettext-devel
 BuildRequires:	rpm-perlprov
 BuildRequires:	sed >= 4.0
 Requires:	%{name}-display = %{version}-%{release}
 Requires:	%{name}-remote = %{version}-%{release}
+Requires:	clutter-gst-devel >= 0.10
 Requires:	mysql-client
 Requires:	perl-Gtk2 >= 1.220
 Suggests:	diatheke
