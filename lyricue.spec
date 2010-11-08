@@ -1,12 +1,12 @@
 %include    /usr/lib/rpm/macros.perl
 Summary:	GNU Lyric Display System, client interface
 Name:		lyricue
-Version:	3.0.19
+Version:	3.0.20
 Release:	1
 License:	GPL
 Group:		X11/Applications/Graphics
 Source0:	http://www.lyricue.org/archive/%{name}_%{version}.tar.gz
-# Source0-md5:	4b8e939704b3e3a33bced256e5dfa854
+# Source0-md5:	072b29cfadb8ac690e9cba38650990e9
 URL:		http://www.lyricue.org
 BuildRequires:	clutter-gst-devel >= 0.10
 BuildRequires:	gettext-devel
