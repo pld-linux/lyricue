@@ -11,6 +11,9 @@ URL:		http://www.lyricue.org
 BuildRequires:	clutter-gst-devel >= 0.10
 BuildRequires:	clutter-gtk-devel >= 0.10
 BuildRequires:	gettext-devel
+BuildRequires:	intltool
+BuildRequires:	mysql-devel
+BuildRequires:	pkgconfig
 BuildRequires:	rpm-perlprov
 BuildRequires:	sed >= 4.0
 Requires:	%{name}-display = %{version}-%{release}
