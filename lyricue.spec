@@ -8,6 +8,7 @@ Group:		X11/Applications/Graphics
 Source0:	http://www.lyricue.org/archive/%{name}_%{version}.tar.gz
 # Source0-md5:	d7184f8243a9e4e8e4d3a699e6ceadce
 URL:		http://www.lyricue.org
+Patch0:		%{name}-clutter.patch
 BuildRequires:	clutter-gst-devel >= 0.10
 BuildRequires:	clutter-gtk-devel >= 0.10
 BuildRequires:	gettext-devel
@@ -16,6 +17,7 @@ BuildRequires:	mysql-devel
 BuildRequires:	pkgconfig
 BuildRequires:	rpm-perlprov
 BuildRequires:	sed >= 4.0
+BuildRequires:	gtk+2-devel
 Requires:	%{name}-display = %{version}-%{release}
 Requires:	%{name}-remote = %{version}-%{release}
 Requires:	clutter-gst >= 0.10
@@ -60,6 +62,7 @@ Remote control CLI to control the projection display from any shell.
 
 %prep
 %setup -q
+%patch0 -p1
 
 # Fix perl shebang
 %{__sed} -i -e '1s,^#!.*perl,#!%{__perl},' src/%{name} src/%{name}_remote
