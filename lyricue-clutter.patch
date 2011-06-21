@@ -50,3 +50,23 @@
  
  $CLUTTER_PKG_ERRORS
  
+--- lyricue-3.0.25/src/display.c~	2010-12-12 08:18:17.000000000 +0200
++++ lyricue-3.0.25/src/display.c	2011-06-21 19:14:14.000000000 +0300
+@@ -586,7 +586,7 @@
+             bg_is_video = g_timeout_add_seconds(1, (GSourceFunc) update_tracker, NULL);
+             video_loop = loop;
+             //gboolean ret = gst_element_seek_simple(clutter_gst_video_texture_get_playbin(CLUTTER_GST_VIDEO_TEXTURE(background)), gst_format_get_by_nick("title"), GST_SEEK_FLAG_FLUSH | GST_SEEK_FLAG_KEY_UNIT, 1);
+-        gst_element_seek(clutter_gst_video_texture_get_playbin(CLUTTER_GST_VIDEO_TEXTURE(background)), 1.0, GST_FORMAT_TIME, GST_SEEK_FLAG_FLUSH, GST_SEEK_TYPE_SET, 10 * GST_SECOND, 0,0);
++        gst_element_seek(clutter_gst_video_texture_get_pipeline(CLUTTER_GST_VIDEO_TEXTURE(background)), 1.0, GST_FORMAT_TIME, GST_SEEK_FLAG_FLUSH, GST_SEEK_TYPE_SET, 10 * GST_SECOND, 0,0);
+ 
+         } else {
+             clutter_media_set_playing (CLUTTER_MEDIA (background), TRUE);
+@@ -852,7 +852,7 @@
+ {
+     if (bg_is_video) {
+         l_debug("Skipping to %d",duration);
+-        gst_element_seek(clutter_gst_video_texture_get_playbin(CLUTTER_GST_VIDEO_TEXTURE(background)), 1.0, GST_FORMAT_TIME, GST_SEEK_FLAG_FLUSH, GST_SEEK_TYPE_SET, duration * GST_SECOND, 0,0);
++        gst_element_seek(clutter_gst_video_texture_get_pipeline(CLUTTER_GST_VIDEO_TEXTURE(background)), 1.0, GST_FORMAT_TIME, GST_SEEK_FLAG_FLUSH, GST_SEEK_TYPE_SET, duration * GST_SECOND, 0,0);
+     }
+ }
+ 
