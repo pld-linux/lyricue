@@ -1,14 +1,13 @@
 %include    /usr/lib/rpm/macros.perl
 Summary:	GNU Lyric Display System, client interface
 Name:		lyricue
-Version:	3.0.41
+Version:	3.3.3
 Release:	1
 License:	GPL
 Group:		X11/Applications/Graphics
 Source0:	http://www.lyricue.org/archive/%{name}_%{version}.tar.gz
-# Source0-md5:	a8feb4443bde34f3f1937b8ab7007220
+# Source0-md5:	a744a2513a08f8ed33fffc10b6d560e9
 URL:		http://www.lyricue.org
-Patch0:		%{name}-clutter.patch
 BuildRequires:	clutter-gst-devel >= 0.10
 BuildRequires:	clutter-gtk-devel >= 0.10
 BuildRequires:	gettext-devel
@@ -62,7 +61,6 @@ Remote control CLI to control the projection display from any shell.
 
 %prep
 %setup -q
-%patch0 -p0
 
 # Fix perl shebang
 %{__sed} -i -e '1s,^#!.*perl,#!%{__perl},' src/%{name} src/%{name}_remote
