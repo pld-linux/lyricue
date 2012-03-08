@@ -1,12 +1,12 @@
 %include    /usr/lib/rpm/macros.perl
 Summary:	GNU Lyric Display System, client interface
 Name:		lyricue
-Version:	3.3.3
+Version:	3.4.0
 Release:	1
 License:	GPL
 Group:		X11/Applications/Graphics
 Source0:	http://www.lyricue.org/archive/%{name}_%{version}.tar.gz
-# Source0-md5:	a744a2513a08f8ed33fffc10b6d560e9
+# Source0-md5:	fad91309626ecdb935b53a0e120991f7
 URL:		http://www.lyricue.org
 BuildRequires:	clutter-gst-devel >= 0.10
 BuildRequires:	clutter-gtk-devel >= 0.10
@@ -23,6 +23,7 @@ Requires:	clutter-gst >= 0.10
 Requires:	clutter-gtk >= 0.10
 Requires:	mysql-client
 Requires:	perl-Gtk2 >= 1.220
+Suggests:	ImageMagick
 Suggests:	diatheke
 Suggests:	mysql
 Suggests:	perl-DBD-SQLite
