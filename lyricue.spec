@@ -2,7 +2,7 @@
 Summary:	GNU Lyric Display System, client interface
 Name:		lyricue
 Version:	3.4.0
-Release:	1
+Release:	2
 License:	GPL
 Group:		X11/Applications/Graphics
 Source0:	http://www.lyricue.org/archive/%{name}_%{version}.tar.gz
