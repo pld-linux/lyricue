@@ -1,4 +1,8 @@
+# TODO:
+# - Make sure display and remote subpackages can run without the client
+
 %include    /usr/lib/rpm/macros.perl
+
 Summary:	GNU Lyric Display System, client interface
 Name:		lyricue
 Version:	3.4.10
@@ -7,6 +11,8 @@ License:	GPL
 Group:		X11/Applications/Graphics
 Source0:	http://www.lyricue.org/archive/%{name}_%{version}.tar.gz
 # Source0-md5:	7276c53c70a3b4334f0d4cc2a7ba9539
+Patch0:	%{name}-clutter-gst.patch
+Patch1:	%{name}-gstreamer.patch
 URL:		http://www.lyricue.org
 BuildRequires:	clutter-gst-devel >= 0.10
 BuildRequires:	clutter-gtk-devel >= 0.10
@@ -55,13 +61,15 @@ Component to handle action display and projection of slides.
 
 %package remote
 Summary:	GNU Lyric Display System, remote control cli
-Group:		Libraries
+Group:	Libraries
 
 %description remote
 Remote control CLI to control the projection display from any shell.
 
 %prep
 %setup -q
+%patch0 -p0
+%patch1 -p0
 
 # Fix perl shebang
 %{__sed} -i -e '1s,^#!.*perl,#!%{__perl},' src/%{name} src/%{name}_remote
