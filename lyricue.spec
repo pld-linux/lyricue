@@ -10,9 +10,9 @@ Release:	1
 License:	GPL
 Group:		X11/Applications/Graphics
 Source0:	http://www.lyricue.org/archive/%{name}_%{version}.tar.gz
-# Source0-md5:	042c274da4c374d64eeeee7cf80375ec
-Patch0:	%{name}-clutter-gst.patch
-Patch1:	%{name}-gstreamer.patch
+# Source0-md5:	7276c53c70a3b4334f0d4cc2a7ba9539
+Patch0:		%{name}-clutter-gst.patch
+Patch1:		%{name}-gstreamer.patch
 URL:		http://www.lyricue.org
 BuildRequires:	clutter-gst-devel >= 0.10
 BuildRequires:	clutter-gtk-devel >= 0.10
@@ -61,7 +61,7 @@ Component to handle action display and projection of slides.
 
 %package remote
 Summary:	GNU Lyric Display System, remote control cli
-Group:	Libraries
+Group:		Libraries
 
 %description remote
 Remote control CLI to control the projection display from any shell.
