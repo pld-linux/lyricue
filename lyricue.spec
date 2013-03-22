@@ -5,12 +5,12 @@
 
 Summary:	GNU Lyric Display System, client interface
 Name:		lyricue
-Version:	3.5.3
+Version:	3.5.5
 Release:	1
 License:	GPL
 Group:		X11/Applications/Graphics
 Source0:	http://www.lyricue.org/archive/%{name}_%{version}.tar.gz
-# Source0-md5:	7276c53c70a3b4334f0d4cc2a7ba9539
+# Source0-md5:	fb32a72110c7f1dd006fbca9828dc5da
 Patch0:		%{name}-clutter-gst.patch
 Patch1:		%{name}-gstreamer.patch
 URL:		http://www.lyricue.org
