@@ -13,8 +13,6 @@ Source0:	http://www.lyricue.org/archive/%{name}_%{version}.tar.gz
 # Source0-md5:	58ad888121b84033928c56a4233405f2
 Patch0:		%{name}-gstreamer.patch
 URL:		http://www.lyricue.org
-BuildRequires:	clutter-gst-devel >= 0.10
-BuildRequires:	clutter-gtk-devel >= 0.10
 BuildRequires:	gettext-devel
 BuildRequires:	gtk+2-devel
 BuildRequires:	intltool
@@ -24,14 +22,13 @@ BuildRequires:	rpm-perlprov
 BuildRequires:	sed >= 4.0
 Requires:	%{name}-display = %{version}-%{release}
 Requires:	%{name}-remote = %{version}-%{release}
-Requires:	clutter-gst >= 0.10
-Requires:	clutter-gtk >= 0.10
 Requires:	mysql-client
 Requires:	perl-Gtk2 >= 1.220
+Requires:	perl-Net-Bonjour
+Requires:	perl-Net-Rendezvous-Publish
 Suggests:	ImageMagick
 Suggests:	diatheke
 Suggests:	mysql
-Suggests:	perl-DBD-SQLite
 Suggests:	perl-DBD-mysql
 Suggests:	perl-Gtk2-Spell
 Suggests:	perl-Gtk2-TrayIcon
@@ -49,7 +46,6 @@ seminars.
 Summary:	GNU Lyric Display System, display interface
 Group:		X11/Applications/Graphics
 Requires:	perl-Gtk2 >= 1.220
-Suggests:	perl-DBD-SQLite
 Suggests:	perl-DBD-mysql
 Suggests:	perl-Locale-gettext
 Suggests:	totem
