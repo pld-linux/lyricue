@@ -5,12 +5,12 @@
 
 Summary:	GNU Lyric Display System, client interface
 Name:		lyricue
-Version:	3.6.2
+Version:	3.6.5
 Release:	1
 License:	GPL
 Group:		X11/Applications/Graphics
 Source0:	http://www.lyricue.org/archive/%{name}_%{version}.tar.gz
-# Source0-md5:	58ad888121b84033928c56a4233405f2
+# Source0-md5:	e4646b89cee70f05c11f6362a27f369a
 Patch0:		%{name}-gstreamer.patch
 URL:		http://www.lyricue.org
 BuildRequires:	gettext-devel
