@@ -13,7 +13,7 @@ Source0:	http://www.lyricue.org/archive/%{name}_%{version}.tar.gz
 # Source0-md5:	e4646b89cee70f05c11f6362a27f369a
 Patch0:		%{name}-gstreamer.patch
 URL:		http://www.lyricue.org
-BuildRequires:	gettext-devel
+BuildRequires:	gettext-tools
 BuildRequires:	gtk+2-devel
 BuildRequires:	intltool
 BuildRequires:	mysql-devel
