@@ -1,7 +1,6 @@
 # TODO:
 # - Make sure display and remote subpackages can run without the client
 
-%include    /usr/lib/rpm/macros.perl
 
 Summary:	GNU Lyric Display System, client interface
 Name:		lyricue
