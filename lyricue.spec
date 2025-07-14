@@ -62,7 +62,7 @@ Remote control CLI to control the projection display from any shell.
 
 %prep
 %setup -q
-%patch0 -p0
+%patch -P0 -p0
 
 # Fix perl shebang
 %{__sed} -i -e '1s,^#!.*perl,#!%{__perl},' src/%{name} src/%{name}_remote
